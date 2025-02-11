@@ -1,4 +1,5 @@
 const crypto = require('crypto');
+const { Op } = require('sequelize'); // Importa Op aquí
 const User = require('../models/User');
 const nodemailer = require('nodemailer');
 
@@ -31,7 +32,7 @@ async function initiatePasswordReset(req, res) {
         from: process.env.EMAIL_USER,
         to: user.email,
         subject: 'Password Reset',
-        text: `Click the following link to reset your password: \n\nhttp://your-frontend-url/reset-password/${token}`
+        text: `Click the following link to reset your password: \n\n${token}`
     };
 
     transporter.sendMail(mailOptions, (error, info) => {
