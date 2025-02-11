@@ -6,11 +6,11 @@ require('dotenv').config();  // Load environment variables from .env file
 const sequelize = require('./db');
 const User = require('./models/User');  // Ensure models are created
 
-const app = express();
+const app = express();  // Mueve esta línea antes de usar 'app'
 
 // Middleware
 app.use(cors());
-app.use(bodyParser.json());
+app.use(express.json());  // Ahora puedes usar 'app' después de la inicialización
 
 // Register routes
 app.use('/api', registerRoutes);
